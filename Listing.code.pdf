@@ -1,0 +1,2457 @@
+%PDF-1.2
+5 0 obj
+<</Length 6 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+1 i
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:31)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(1)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 284.412 736.5 Tm
+(bigint.h)Tj
+-117.625 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-98.7875 -35.5 Td
+[(1:)-600(// $Id: bigint.h,v 1.2 2012-04-10 21:02:20-07 - - $)]TJ
+11 TL
+(2:)'
+T*[(3:)-600(#ifndef __BIGINT_H__)]TJ
+T*[(4:)-600(#define __BIGINT_H__)]TJ
+(5:)'
+T*[(6:)-600(#include <exception>)]TJ
+T*[(7:)-600(#include <iostream>)]TJ
+T*[(8:)-600(#include <utility>)]TJ
+(9:)'
+-6 -11 Td
+[(10:)-600(using namespace std;)]TJ
+(11:)'
+T*[(12:)-600(#include "trace.h")]TJ
+(13:)'
+T*[(14:)-600(class bigint;)]TJ
+T*[(15:)-600(typedef pair <bigint, bigint> bigpair;)]TJ
+(16:)'
+T*[(17:)-600(//)]TJ
+T*[(18:)-600(// Operators with a left side of int.)]TJ
+T*[(19:)-600(//)]TJ
+T*[(20:)-600(bigint operator+ \(int left, const bigint &that\);)]TJ
+T*[(21:)-600(bigint operator- \(int left, const bigint &that\);)]TJ
+T*[(22:)-600(bigint operator* \(int left, const bigint &that\);)]TJ
+T*[(23:)-600(bigint operator/ \(int left, const bigint &that\);)]TJ
+T*[(24:)-600(bigint operator% \(int left, const bigint &that\);)]TJ
+T*[(25:)-600(bool operator== \(int left, const bigint &that\);)]TJ
+T*[(26:)-600(bool operator!= \(int left, const bigint &that\);)]TJ
+T*[(27:)-600(bool operator<  \(int left, const bigint &that\);)]TJ
+T*[(28:)-600(bool operator<= \(int left, const bigint &that\);)]TJ
+T*[(29:)-600(bool operator>  \(int left, const bigint &that\);)]TJ
+T*[(30:)-600(bool operator>= \(int left, const bigint &that\);)]TJ
+(31:)'
+ET
+Q
+Q
+endstream
+endobj
+6 0 obj
+1827
+endobj
+14 0 obj
+<</Length 15 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:31)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(2)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 284.412 736.5 Tm
+(bigint.h)Tj
+-117.625 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-104.787 -35.5 Td
+(32:)Tj
+11 TL
+T*[(33:)-600(//)]TJ
+T*[(34:)-600(// Define class bigint)]TJ
+T*[(35:)-600(//)]TJ
+T*[(36:)-600(class bigint {)]TJ
+T*[(37:)-600(      friend ostream &operator<< \(ostream &, const bigint &\);)]TJ
+T*[(38:)-600(   private:)]TJ
+T*[(39:)-600(      int small_value;)]TJ
+T*[(40:)-600(      bigpair div_rem \(const bigint &that\) const;)]TJ
+T*[(41:)-600(      int compare \(const bigint &that\) const;)]TJ
+T*[(42:)-600(      int abscompare \(const bigint &that\) const;)]TJ
+T*[(43:)-600(      bigint mul_by_2 \(\);)]TJ
+T*[(44:)-600(   public:)]TJ
+T*[(45:)-600(      //)]TJ
+T*[(46:)-600(      // Override implicit members.)]TJ
+T*[(47:)-600(      //)]TJ
+T*[(48:)-600(      bigint \(\);)]TJ
+T*[(49:)-600(      bigint \(const bigint &that\);)]TJ
+T*[(50:)-600(      bigint &operator= \(const bigint &that\);)]TJ
+T*[(51:)-600(      ~bigint \(\);)]TJ
+T*[(52:)-600(      //)]TJ
+T*[(53:)-600(      // Extra ctors to make bigints.)]TJ
+T*[(54:)-600(      //)]TJ
+T*[(55:)-600(      bigint \(const int that\);)]TJ
+T*[(56:)-600(      bigint \(const string &that\);)]TJ
+T*[(57:)-600(      //)]TJ
+T*[(58:)-600(      // Basic add/sub operators.)]TJ
+T*[(59:)-600(      //)]TJ
+T*[(60:)-600(      bigint operator+ \(const bigint &that\) const;)]TJ
+T*[(61:)-600(      bigint operator- \(const bigint &that\) const;)]TJ
+T*[(62:)-600(      bigint operator- \(\) const;)]TJ
+T*[(63:)-600(      int smallint \(\) const;)]TJ
+T*[(64:)-600(      //)]TJ
+T*[(65:)-600(      // Extended operators implemented with add/sub.)]TJ
+T*[(66:)-600(      //)]TJ
+T*[(67:)-600(      bigint operator* \(const bigint &that\) const;)]TJ
+T*[(68:)-600(      bigint operator/ \(const bigint &that\) const;)]TJ
+T*[(69:)-600(      bigint operator% \(const bigint &that\) const;)]TJ
+T*[(70:)-600(      bigint pow \(const bigint &that\) const;)]TJ
+T*[(71:)-600(      //)]TJ
+T*[(72:)-600(      // Comparison operators.)]TJ
+T*[(73:)-600(      //)]TJ
+T*[(74:)-600(      bool operator== \(const bigint &that\) const;)]TJ
+T*[(75:)-600(      bool operator!= \(const bigint &that\) const;)]TJ
+T*[(76:)-600(      bool operator<  \(const bigint &that\) const;)]TJ
+T*[(77:)-600(      bool operator<= \(const bigint &that\) const;)]TJ
+T*[(78:)-600(      bool operator>  \(const bigint &that\) const;)]TJ
+T*[(79:)-600(      bool operator>= \(const bigint &that\) const;)]TJ
+T*[(80:)-600(};)]TJ
+(81:)'
+T*[(82:)-600(#endif)]TJ
+(83:)'
+ET
+Q
+Q
+endstream
+endobj
+15 0 obj
+2888
+endobj
+18 0 obj
+<</Length 19 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:31)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(1)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 279.296 736.5 Tm
+(scanner.h)Tj
+-112.508 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-98.7875 -35.5 Td
+[(1:)-600(// $Id: scanner.h,v 1.1 2011-01-18 22:17:09-08 - - $)]TJ
+11 TL
+(2:)'
+T*[(3:)-600(#ifndef __SCANNER_H__)]TJ
+T*[(4:)-600(#define __SCANNER_H__)]TJ
+(5:)'
+T*[(6:)-600(#include <iostream>)]TJ
+T*[(7:)-600(#include <utility>)]TJ
+(8:)'
+T*[(9:)-600(using namespace std;)]TJ
+-6 -11 Td
+(10:)Tj
+T*[(11:)-600(#include "trace.h")]TJ
+(12:)'
+T*[(13:)-600(enum terminal_symbol {NUMBER, OPERATOR, SCANEOF};)]TJ
+T*[(14:)-600(struct token_t {)]TJ
+T*[(15:)-600(   terminal_symbol symbol;)]TJ
+T*[(16:)-600(   string lexinfo;)]TJ
+T*[(17:)-600(};)]TJ
+(18:)'
+T*[(19:)-600(class scanner {)]TJ
+T*[(20:)-600(   private:)]TJ
+T*[(21:)-600(      bool seen_eof;)]TJ
+T*[(22:)-600(      char lookahead;)]TJ
+T*[(23:)-600(      void advance\(\);)]TJ
+T*[(24:)-600(   public:)]TJ
+T*[(25:)-600(      scanner\(\);)]TJ
+T*[(26:)-600(      token_t scan \(\);)]TJ
+T*[(27:)-600(};)]TJ
+(28:)'
+T*[(29:)-600(ostream &operator<< \(ostream &, const terminal_symbol &\);)]TJ
+T*[(30:)-600(ostream &operator<< \(ostream &, const token_t &\);)]TJ
+(31:)'
+T*[(32:)-600(#endif)]TJ
+(33:)'
+ET
+Q
+Q
+endstream
+endobj
+19 0 obj
+1559
+endobj
+22 0 obj
+<</Length 23 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:31)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(1)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 287.073 736.5 Tm
+(trace.h)Tj
+-120.285 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-98.7875 -35.5 Td
+[(1:)-600(// $Id: trace.h,v 1.1 2011-01-18 22:17:09-08 - - $)]TJ
+11 TL
+(2:)'
+T*[(3:)-600(#ifndef __TRACE_H__)]TJ
+T*[(4:)-600(#define __TRACE_H__)]TJ
+(5:)'
+T*[(6:)-600(#include <iostream>)]TJ
+T*[(7:)-600(#include <string>)]TJ
+T*[(8:)-600(#include <vector>)]TJ
+(9:)'
+-6 -11 Td
+[(10:)-600(using namespace std;)]TJ
+(11:)'
+T*[(12:)-600(//)]TJ
+T*[(13:)-600(// traceflags -)]TJ
+T*[(14:)-600(//    static class for maintaining global trace flags, each indicated)]TJ
+T*[(15:)-600(//    by a single character.)]TJ
+T*[(16:)-600(// setflags -)]TJ
+T*[(17:)-600(//    Takes a string argument, and sets a flag for each char in the)]TJ
+T*[(18:)-600(//    string.  As a special case, '@', sets all flags.)]TJ
+T*[(19:)-600(// getflag -)]TJ
+T*[(20:)-600(//    Used by the TRACE macro to check to see if a flag has been set.)]TJ
+T*[(21:)-600(//    Not to be called by user code.)]TJ
+T*[(22:)-600(//)]TJ
+(23:)'
+T*[(24:)-600(class traceflags {)]TJ
+T*[(25:)-600(   private:)]TJ
+T*[(26:)-600(      static vector<char> flags;)]TJ
+T*[(27:)-600(   public:)]TJ
+T*[(28:)-600(      static void setflags \(const string &optflags\);)]TJ
+T*[(29:)-600(      static bool getflag \(char flag\);)]TJ
+T*[(30:)-600(};)]TJ
+(31:)'
+T*[(32:)-600(//)]TJ
+T*[(33:)-600(// TRACE -)]TJ
+T*[(34:)-600(//    Macro which expands into trace code.  First argument is a)]TJ
+T*[(35:)-600(//    trace flag char, second argument is output code that can)]TJ
+T*[(36:)-600(//    be sandwiched between <<.  Beware of operator precedence.)]TJ
+T*[(37:)-600(//    Example:)]TJ
+T*[(38:)-600(//       TRACE \('u', "foo = " << foo\);)]TJ
+T*[(39:)-600(//    will print two words and a newline if flag 'u' is  on.)]TJ
+T*[(40:)-600(//    Traces are preceded by filename, line number, and function.)]TJ
+T*[(41:)-600(//)]TJ
+(42:)'
+T*[(43:)-600(#define TRACE\(FLAG,CODE\) { \\)]TJ
+T*[(44:)-600(           if \(traceflags::getflag \(FLAG\)\) { \\)]TJ
+T*[(45:)-600(              cerr << __FILE__ << ":" << __LINE__ << ":" \\)]TJ
+T*[(46:)-600(                   << __func__ << ":" << endl; \\)]TJ
+T*[(47:)-600(              cerr << CODE << endl; \\)]TJ
+T*[(48:)-600(           } \\)]TJ
+T*[(49:)-600(        })]TJ
+(50:)'
+T*[(51:)-600(#endif)]TJ
+(52:)'
+ET
+Q
+Q
+endstream
+endobj
+23 0 obj
+2690
+endobj
+26 0 obj
+<</Length 27 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:31)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(1)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 291.412 736.5 Tm
+(util.h)Tj
+-124.625 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-98.7875 -35.5 Td
+[(1:)-600(// $Id: util.h,v 1.2 2012-04-10 21:02:20-07 - - $)]TJ
+11 TL
+(2:)'
+T*[(3:)-600(//)]TJ
+T*[(4:)-600(// util -)]TJ
+T*[(5:)-600(//    A utility class to provide various services not conveniently)]TJ
+T*[(6:)-600(//    included in other modules.)]TJ
+T*[(7:)-600(//)]TJ
+(8:)'
+T*[(9:)-600(#ifndef __UTIL_H__)]TJ
+-6 -11 Td
+[(10:)-600(#define __UTIL_H__)]TJ
+(11:)'
+T*[(12:)-600(#include <iostream>)]TJ
+T*[(13:)-600(#include <vector>)]TJ
+(14:)'
+T*[(15:)-600(#ifdef __GNUC__)]TJ
+T*[(16:)-600(#include <stdexcept>)]TJ
+T*[(17:)-600(#endif)]TJ
+(18:)'
+T*[(19:)-600(using namespace std;)]TJ
+(20:)'
+T*[(21:)-600(#include "trace.h")]TJ
+(22:)'
+T*[(23:)-600(//)]TJ
+T*[(24:)-600(// ydc_exn -)]TJ
+T*[(25:)-600(//    Indicate a problem where processing should be abandoned and)]TJ
+T*[(26:)-600(//    the main function should take control.)]TJ
+T*[(27:)-600(//)]TJ
+(28:)'
+T*[(29:)-600(class ydc_exn: public runtime_error {)]TJ
+T*[(30:)-600(   public:)]TJ
+T*[(31:)-600(      explicit ydc_exn \(const string &what\);)]TJ
+T*[(32:)-600(};)]TJ
+(33:)'
+T*[(34:)-600(//)]TJ
+T*[(35:)-600(// octal -)]TJ
+T*[(36:)-600(//    Convert integer to octal string.)]TJ
+T*[(37:)-600(//)]TJ
+(38:)'
+T*[(39:)-600(const string octal \(int decimal\);)]TJ
+(40:)'
+ET
+Q
+Q
+endstream
+endobj
+27 0 obj
+1735
+endobj
+30 0 obj
+<</Length 31 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:31)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(2)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 291.412 736.5 Tm
+(util.h)Tj
+-124.625 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-104.787 -35.5 Td
+(41:)Tj
+11 TL
+T*[(42:)-600(//)]TJ
+T*[(43:)-600(// sys_info -)]TJ
+T*[(44:)-600(//    Keep track of execname and exit status.  Must be initialized)]TJ
+T*[(45:)-600(//    as the first thing done inside main.  Main should call:)]TJ
+T*[(46:)-600(//       sys_info::set_execname \(argv[0]\);)]TJ
+T*[(47:)-600(//    before anything else.)]TJ
+T*[(48:)-600(//)]TJ
+(49:)'
+T*[(50:)-600(class sys_info {)]TJ
+T*[(51:)-600(   private:)]TJ
+T*[(52:)-600(      static string execname;)]TJ
+T*[(53:)-600(      static int exit_status;)]TJ
+T*[(54:)-600(   public:)]TJ
+T*[(55:)-600(      static void set_execname \(const string &argv0\);)]TJ
+T*[(56:)-600(      static const string &get_execname \(\) {return execname; })]TJ
+T*[(57:)-600(      static void set_status \(int status\) {exit_status = status; })]TJ
+T*[(58:)-600(      static int get_status \(\) {return exit_status; })]TJ
+T*[(59:)-600(};)]TJ
+(60:)'
+T*[(61:)-600(//)]TJ
+T*[(62:)-600(// complain -)]TJ
+T*[(63:)-600(//    Used for starting error messages.  Sets the exit status to)]TJ
+T*[(64:)-600(//    EXIT_FAILURE, writes the program name to cerr, and then)]TJ
+T*[(65:)-600(//    returns the cerr ostream.  Example:)]TJ
+T*[(66:)-600(//       complain\(\) << filename << ": some problem" << endl;)]TJ
+T*[(67:)-600(//)]TJ
+(68:)'
+T*[(69:)-600(ostream &complain\(\);)]TJ
+(70:)'
+T*[(71:)-600(//)]TJ
+T*[(72:)-600(// operator<< \(vector\) -)]TJ
+T*[(73:)-600(//    An overloaded template operator which allows vectors to be)]TJ
+T*[(74:)-600(//    printed out as a single operator, each element separated from)]TJ
+T*[(75:)-600(//    the next with spaces.  The item_t must have an output operator)]TJ
+T*[(76:)-600(//    defined for it.)]TJ
+T*[(77:)-600(//)]TJ
+(78:)'
+T*[(79:)-600(template <typename item_t>)]TJ
+T*[(80:)-600(ostream &operator<< \(ostream &out, const vector<item_t> &vec\);)]TJ
+(81:)'
+T*[(82:)-600(#endif)]TJ
+(83:)'
+ET
+Q
+Q
+endstream
+endobj
+31 0 obj
+2375
+endobj
+34 0 obj
+<</Length 35 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:31)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(1)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 276.958 736.5 Tm
+(iterstack.h)Tj
+-110.171 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-98.7875 -35.5 Td
+[(1:)-600(// $Id: iterstack.h,v 1.6 2012-04-12 19:32:54-07 - - $)]TJ
+11 TL
+(2:)'
+T*[(3:)-600(// )]TJ
+T*[(4:)-600(// The class std::stack does not provide an iterator, which is)]TJ
+T*[(5:)-600(// needed for this class.  So, like std::stack, class iterstack)]TJ
+T*[(6:)-600(// is implemented on top of a container.)]TJ
+T*[(7:)-600(// )]TJ
+T*[(8:)-600(// We use private inheritance because we want to restrict)]TJ
+T*[(9:)-600(// operations only to those few that are approved.  All functions)]TJ
+-6 -11 Td
+[(10:)-600(// are merely inherited from the container, with only ones needed)]TJ
+T*[(11:)-600(// being exported as public.)]TJ
+T*[(12:)-600(// )]TJ
+T*[(13:)-600(// No implementation file is needed because all functions are)]TJ
+T*[(14:)-600(// inherited, and the convenience functions that are added are)]TJ
+T*[(15:)-600(// trivial, and so can be inline.)]TJ
+T*[(16:)-600(// )]TJ
+(17:)'
+T*[(18:)-600(#ifndef __ITERSTACK_H__)]TJ
+T*[(19:)-600(#define __ITERSTACK_H__)]TJ
+(20:)'
+T*[(21:)-600(#include <list>)]TJ
+(22:)'
+T*[(23:)-600(using namespace std;)]TJ
+(24:)'
+T*[(25:)-600(template <typename value_type>)]TJ
+T*[(26:)-600(class iterstack: private list<value_type> {)]TJ
+T*[(27:)-600(   public:)]TJ
+T*[(28:)-600(      using list<value_type>::const_reference;)]TJ
+T*[(29:)-600(      using list<value_type>::const_reverse_iterator;)]TJ
+T*[(30:)-600(      using list<value_type>::push_back;)]TJ
+T*[(31:)-600(      using list<value_type>::pop_back;)]TJ
+T*[(32:)-600(      using list<value_type>::clear;)]TJ
+T*[(33:)-600(      using list<value_type>::back;)]TJ
+T*[(34:)-600(      using list<value_type>::size;)]TJ
+T*[(35:)-600(      using list<value_type>::empty;)]TJ
+T*[(36:)-600(      using list<value_type>::rbegin;)]TJ
+T*[(37:)-600(      using list<value_type>::rend;)]TJ
+T*[(38:)-600(      inline void push \(const value_type &value\) { push_back \(value\); })]TJ
+T*[(39:)-600(      inline void pop\(\) { pop_back\(\); })]TJ
+T*[(40:)-600(      inline value_type& top\(\) { return back\(\); })]TJ
+T*[(41:)-600(      inline const value_type& top\(\) const { return back\(\); })]TJ
+T*[(42:)-600(};)]TJ
+(43:)'
+T*[(44:)-600(#endif)]TJ
+(45:)'
+ET
+Q
+Q
+endstream
+endobj
+35 0 obj
+2658
+endobj
+38 0 obj
+<</Length 39 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:31)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(1)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 277.804 736.5 Tm
+(bigint.cpp)Tj
+-111.017 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-98.7875 -35.5 Td
+[(1:)-600(// $Id: bigint.cpp,v 1.3 2012-04-10 21:02:20-07 - - $)]TJ
+11 TL
+(2:)'
+T*[(3:)-600(#include <cstdlib>)]TJ
+T*[(4:)-600(#include <exception>)]TJ
+T*[(5:)-600(#include <limits>)]TJ
+T*[(6:)-600(#include <stack>)]TJ
+T*[(7:)-600(#include <stdexcept>)]TJ
+(8:)'
+T*[(9:)-600(using namespace std;)]TJ
+-6 -11 Td
+(10:)Tj
+T*[(11:)-600(#include "bigint.h")]TJ
+T*[(12:)-600(#include "trace.h")]TJ
+(13:)'
+T*[(14:)-600(#define CDTOR_TRACE TRACE \('~', this << " -> " << small_value\))]TJ
+(15:)'
+T*[(16:)-600(bigint::bigint \(\): small_value \(0\) {)]TJ
+T*[(17:)-600(   CDTOR_TRACE;)]TJ
+T*[(18:)-600(})]TJ
+(19:)'
+T*[(20:)-600(bigint::bigint \(const bigint &that\): small_value \(that.small_value\) {)]TJ
+T*[(21:)-600(   *this = that;)]TJ
+T*[(22:)-600(   CDTOR_TRACE;)]TJ
+T*[(23:)-600(})]TJ
+(24:)'
+T*[(25:)-600(bigint &bigint::operator= \(const bigint &that\) {)]TJ
+T*[(26:)-600(   if \(this == &that\) return *this;)]TJ
+T*[(27:)-600(   this->small_value = that.small_value;)]TJ
+T*[(28:)-600(   return *this;)]TJ
+T*[(29:)-600(})]TJ
+(30:)'
+T*[(31:)-600(bigint::~bigint\(\) {)]TJ
+T*[(32:)-600(   CDTOR_TRACE;)]TJ
+T*[(33:)-600(})]TJ
+(34:)'
+T*[(35:)-600(bigint::bigint \(int that\): small_value \(that\) {)]TJ
+T*[(36:)-600(   CDTOR_TRACE;)]TJ
+T*[(37:)-600(})]TJ
+(38:)'
+T*[(39:)-600(bigint::bigint \(const string &that\) {)]TJ
+T*[(40:)-600(   string::const_iterator itor = that.begin\(\);)]TJ
+T*[(41:)-600(   string::const_iterator end = that.end\(\);)]TJ
+T*[(42:)-600(   bool isnegative = false;)]TJ
+T*[(43:)-600(   if \(*itor == '_'\) {isnegative = true; ++itor; })]TJ
+T*[(44:)-600(   int newval = 0;)]TJ
+T*[(45:)-600(   for \(; itor != end; ++itor\) newval = newval * 10 + *itor - '0';)]TJ
+T*[(46:)-600(   small_value = isnegative ? - newval : + newval;)]TJ
+T*[(47:)-600(   CDTOR_TRACE;)]TJ
+T*[(48:)-600(})]TJ
+(49:)'
+ET
+Q
+Q
+endstream
+endobj
+39 0 obj
+2323
+endobj
+42 0 obj
+<</Length 43 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:31)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(2)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 277.804 736.5 Tm
+(bigint.cpp)Tj
+-111.017 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-104.787 -35.5 Td
+(50:)Tj
+11 TL
+T*[(51:)-600(bigint bigint::operator+ \(const bigint &that\) const {)]TJ
+T*[(52:)-600(   return this->small_value + that.small_value;)]TJ
+T*[(53:)-600(})]TJ
+(54:)'
+T*[(55:)-600(bigint bigint::operator- \(const bigint &that\) const {)]TJ
+T*[(56:)-600(   return this->small_value - that.small_value;)]TJ
+T*[(57:)-600(})]TJ
+(58:)'
+T*[(59:)-600(bigint bigint::operator- \(\) const {)]TJ
+T*[(60:)-600(   return -small_value;)]TJ
+T*[(61:)-600(})]TJ
+(62:)'
+T*[(63:)-600(int bigint::compare \(const bigint &that\) const {)]TJ
+T*[(64:)-600(   return this->small_value < that.small_value ? -1)]TJ
+T*[(65:)-600(        : this->small_value > that.small_value ? +1 : 0;)]TJ
+T*[(66:)-600(})]TJ
+(67:)'
+T*[(68:)-600(int bigint::abscompare \(const bigint &that\) const {)]TJ
+T*[(69:)-600(   return abs \(this->small_value\) < abs \(that.small_value\) ? -1)]TJ
+T*[(70:)-600(        : abs \(this->small_value\) > abs \(that.small_value\) ? +1 : 0;)]TJ
+T*[(71:)-600(})]TJ
+(72:)'
+T*[(73:)-600(int bigint::smallint \(\) const {)]TJ
+T*[(74:)-600(   if \(*this < numeric_limits<int>::min\(\))]TJ
+T*[(75:)-600(    || *this > numeric_limits<int>::max\(\)\))]TJ
+T*[(76:)-600(               throw range_error \("smallint: out of range"\);)]TJ
+T*[(77:)-600(   return small_value;)]TJ
+T*[(78:)-600(})]TJ
+(79:)'
+T*[(80:)-600(bigint bigint::mul_by_2 \(\) {)]TJ
+T*[(81:)-600(   return this->small_value *= 2;)]TJ
+T*[(82:)-600(})]TJ
+(83:)'
+T*[(84:)-600(static bigpair popstack \(stack <bigpair> &egyptstack\) {)]TJ
+T*[(85:)-600(   bigpair result = egyptstack.top \(\);)]TJ
+T*[(86:)-600(   egyptstack.pop\(\);)]TJ
+T*[(87:)-600(   return result;)]TJ
+T*[(88:)-600(})]TJ
+(89:)'
+ET
+Q
+Q
+endstream
+endobj
+43 0 obj
+2173
+endobj
+46 0 obj
+<</Length 47 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:31)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(3)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 277.804 736.5 Tm
+(bigint.cpp)Tj
+-111.017 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-104.787 -35.5 Td
+(90:)Tj
+11 TL
+T*[(91:)-600(//)]TJ
+T*[(92:)-600(// Ancient Egyptian multiplication algorithm.)]TJ
+T*[(93:)-600(//)]TJ
+T*[(94:)-600(bigint bigint::operator* \(const bigint &that\) const {)]TJ
+T*[(95:)-600(   bigint top = that;)]TJ
+T*[(96:)-600(   bigint count = 1;)]TJ
+T*[(97:)-600(   TRACE \('*', *this << " * " << that\);)]TJ
+T*[(98:)-600(   stack <bigpair> egyptstack;)]TJ
+T*[(99:)-600(   bigint a; // junk code -- delete)]TJ
+-6 -11 Td
+[(100:)-600(   bigint b; // junk code -- delete)]TJ
+T*[(101:)-600(   egyptstack.push \(pair<bigint, bigint> \(a, b\)\); // junk code -- delete)]TJ
+T*[(102:)-600(   popstack \(egyptstack\); // junk to suppress a warning)]TJ
+T*[(103:)-600(   bigint result = 0;)]TJ
+T*[(104:)-600(   if \(\(*this < 0\) != \(that < 0\)\) result = - result;)]TJ
+T*[(105:)-600(   return result;)]TJ
+T*[(106:)-600(})]TJ
+(107:)'
+T*[(108:)-600(//)]TJ
+T*[(109:)-600(// Ancient Egyptian division algorithm.)]TJ
+T*[(110:)-600(//)]TJ
+T*[(111:)-600(bigpair bigint::div_rem \(const bigint &that\) const {)]TJ
+T*[(112:)-600(   if \(that == 0\) throw range_error \("divide by 0"\);)]TJ
+T*[(113:)-600(   bigint count = 1;)]TJ
+T*[(114:)-600(   bigint top = abs \(that.small_value\);)]TJ
+T*[(115:)-600(   TRACE \('/', *this << " /% " << that\);)]TJ
+T*[(116:)-600(   stack <bigpair> egyptstack;)]TJ
+T*[(117:)-600(   bigint quotient = 0;)]TJ
+T*[(118:)-600(   bigint remainder = abs \(this->small_value\);)]TJ
+T*[(119:)-600(   return bigpair \(quotient, remainder\);)]TJ
+T*[(120:)-600(})]TJ
+(121:)'
+T*[(122:)-600(bigint bigint::operator/ \(const bigint &that\) const {)]TJ
+T*[(123:)-600(   return div_rem \(that\).first;)]TJ
+T*[(124:)-600(})]TJ
+(125:)'
+T*[(126:)-600(bigint bigint::operator% \(const bigint &that\) const {)]TJ
+T*[(127:)-600(   return div_rem \(that\).second;)]TJ
+T*[(128:)-600(})]TJ
+(129:)'
+ET
+Q
+Q
+endstream
+endobj
+47 0 obj
+2324
+endobj
+50 0 obj
+<</Length 51 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:31)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(4)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 277.804 736.5 Tm
+(bigint.cpp)Tj
+-111.017 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-110.787 -35.5 Td
+(130:)Tj
+11 TL
+T*[(131:)-600(#define TRACE_POW TRACE \('^', "result: " << result \\)]TJ
+T*[(132:)-600(                  << ", base: " << base << ", expt: " << expt\);)]TJ
+T*[(133:)-600(bigint bigint::pow \(const bigint &that\) const {)]TJ
+T*[(134:)-600(   bigint base = *this;)]TJ
+T*[(135:)-600(   if \(that > 999\) throw range_error \("exp too big"\);)]TJ
+T*[(136:)-600(   int expt = that.smallint\(\);)]TJ
+T*[(137:)-600(   bigint result = 1;)]TJ
+T*[(138:)-600(   TRACE_POW;)]TJ
+T*[(139:)-600(   if \(expt < 0\) {)]TJ
+T*[(140:)-600(      base = 1 / base;)]TJ
+T*[(141:)-600(      expt = - expt;)]TJ
+T*[(142:)-600(   })]TJ
+T*[(143:)-600(   while \(expt > 0\) {)]TJ
+T*[(144:)-600(      TRACE_POW;)]TJ
+T*[(145:)-600(      if \(expt & 1\) { //odd)]TJ
+T*[(146:)-600(         result = result * base;)]TJ
+T*[(147:)-600(         --expt;)]TJ
+T*[(148:)-600(      }else { //even)]TJ
+T*[(149:)-600(         base = base * base;)]TJ
+T*[(150:)-600(         expt /= 2;)]TJ
+T*[(151:)-600(      })]TJ
+T*[(152:)-600(   })]TJ
+T*[(153:)-600(   TRACE_POW;)]TJ
+T*[(154:)-600(   return result;)]TJ
+T*[(155:)-600(})]TJ
+(156:)'
+T*[(157:)-600(//)]TJ
+T*[(158:)-600(// Macros can make repetitive code easier.)]TJ
+T*[(159:)-600(//)]TJ
+(160:)'
+T*[(161:)-600(#define COMPARE\(OPER\) \\)]TJ
+T*[(162:)-600(   bool bigint::operator OPER \(const bigint &that\) const { \\)]TJ
+T*[(163:)-600(      return compare \(that\) OPER 0; \\)]TJ
+T*[(164:)-600(   })]TJ
+T*[(165:)-600(COMPARE \(==\))]TJ
+T*[(166:)-600(COMPARE \(!=\))]TJ
+T*[(167:)-600(COMPARE \(< \))]TJ
+T*[(168:)-600(COMPARE \(<=\))]TJ
+T*[(169:)-600(COMPARE \(> \))]TJ
+T*[(170:)-600(COMPARE \(>=\))]TJ
+(171:)'
+T*[(172:)-600(#define INT_LEFT\(RESULT,OPER\) \\)]TJ
+T*[(173:)-600(   RESULT operator OPER \(int left, const bigint &that\) { \\)]TJ
+T*[(174:)-600(      return bigint \(left\) OPER that; \\)]TJ
+T*[(175:)-600(   })]TJ
+T*[(176:)-600(INT_LEFT \(bigint, +\))]TJ
+T*[(177:)-600(INT_LEFT \(bigint, -\))]TJ
+T*[(178:)-600(INT_LEFT \(bigint, *\))]TJ
+T*[(179:)-600(INT_LEFT \(bigint, /\))]TJ
+T*[(180:)-600(INT_LEFT \(bigint, %\))]TJ
+T*[(181:)-600(INT_LEFT \(bool, ==\))]TJ
+T*[(182:)-600(INT_LEFT \(bool, !=\))]TJ
+T*[(183:)-600(INT_LEFT \(bool, < \))]TJ
+T*[(184:)-600(INT_LEFT \(bool, <=\))]TJ
+T*[(185:)-600(INT_LEFT \(bool, > \))]TJ
+T*[(186:)-600(INT_LEFT \(bool, >=\))]TJ
+(187:)'
+T*[(188:)-600(ostream &operator<< \(ostream &out, const bigint &that\) {)]TJ
+T*[(189:)-600(   out << that.small_value;)]TJ
+T*[(190:)-600(   return out;)]TJ
+T*[(191:)-600(})]TJ
+(192:)'
+ET
+Q
+Q
+endstream
+endobj
+51 0 obj
+3001
+endobj
+54 0 obj
+<</Length 55 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:32)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(1)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 272.688 736.5 Tm
+(scanner.cpp)Tj
+-105.9 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-98.7875 -35.5 Td
+[(1:)-600(// $Id: scanner.cpp,v 1.2 2012-04-10 20:46:21-07 - - $)]TJ
+11 TL
+(2:)'
+T*[(3:)-600(#include <iostream>)]TJ
+T*[(4:)-600(#include <locale>)]TJ
+(5:)'
+T*[(6:)-600(using namespace std;)]TJ
+(7:)'
+T*[(8:)-600(#include "scanner.h")]TJ
+T*[(9:)-600(#include "trace.h")]TJ
+-6 -11 Td
+(10:)Tj
+T*[(11:)-600(scanner::scanner \(\) {)]TJ
+T*[(12:)-600(   seen_eof = false;)]TJ
+T*[(13:)-600(   advance\(\);)]TJ
+T*[(14:)-600(})]TJ
+(15:)'
+T*[(16:)-600(void scanner::advance \(\) {)]TJ
+T*[(17:)-600(   if \(! seen_eof\) {)]TJ
+T*[(18:)-600(      cin.get \(lookahead\);)]TJ
+T*[(19:)-600(      if \(cin.eof\(\)\) seen_eof = true;)]TJ
+T*[(20:)-600(   })]TJ
+T*[(21:)-600(})]TJ
+(22:)'
+T*[(23:)-600(token_t scanner::scan\(\) {)]TJ
+T*[(24:)-600(   token_t result;)]TJ
+T*[(25:)-600(   while \(!seen_eof && isspace \(lookahead\)\) advance\(\);)]TJ
+T*[(26:)-600(   if \(seen_eof\) {)]TJ
+T*[(27:)-600(      result.symbol = SCANEOF;)]TJ
+T*[(28:)-600(   }else if \(lookahead == '_' || isdigit \(lookahead\)\) {)]TJ
+T*[(29:)-600(      result.symbol = NUMBER;)]TJ
+T*[(30:)-600(      do {)]TJ
+T*[(31:)-600(         result.lexinfo += lookahead;)]TJ
+T*[(32:)-600(         advance\(\);)]TJ
+T*[(33:)-600(      }while \(!seen_eof && isdigit \(lookahead\)\);)]TJ
+T*[(34:)-600(   }else {)]TJ
+T*[(35:)-600(      result.symbol = OPERATOR;)]TJ
+T*[(36:)-600(      result.lexinfo += lookahead;)]TJ
+T*[(37:)-600(      advance\(\);)]TJ
+T*[(38:)-600(   })]TJ
+T*[(39:)-600(   TRACE \('S', result\);)]TJ
+T*[(40:)-600(   return result;)]TJ
+T*[(41:)-600(})]TJ
+(42:)'
+T*[(43:)-600(ostream &operator<< \(ostream &out, const terminal_symbol &symbol\) {)]TJ
+T*[(44:)-600(   switch \(symbol\) {)]TJ
+T*[(45:)-600(      case NUMBER  : out << "NUMBER"  ; break;)]TJ
+T*[(46:)-600(      case OPERATOR: out << "OPERATOR"; break;)]TJ
+T*[(47:)-600(      case SCANEOF : out << "SCANEOF" ; break;)]TJ
+T*[(48:)-600(   })]TJ
+T*[(49:)-600(   return out;)]TJ
+T*[(50:)-600(})]TJ
+(51:)'
+T*[(52:)-600(ostream &operator<< \(ostream &out, const token_t &token\) {)]TJ
+T*[(53:)-600(   out << token.symbol << ": \\"" << token.lexinfo << "\\"";)]TJ
+T*[(54:)-600(   return out;)]TJ
+T*[(55:)-600(})]TJ
+(56:)'
+ET
+Q
+Q
+endstream
+endobj
+55 0 obj
+2650
+endobj
+58 0 obj
+<</Length 59 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:32)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(1)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 280.465 736.5 Tm
+(trace.cpp)Tj
+-113.677 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-98.7875 -35.5 Td
+[(1:)-600(// $Id: trace.cpp,v 1.1 2012-04-10 20:43:21-07 - - $)]TJ
+11 TL
+(2:)'
+T*[(3:)-600(#include <climits>)]TJ
+T*[(4:)-600(#include <vector>)]TJ
+(5:)'
+T*[(6:)-600(using namespace std;)]TJ
+(7:)'
+T*[(8:)-600(#include "trace.h")]TJ
+(9:)'
+-6 -11 Td
+[(10:)-600(//)]TJ
+T*[(11:)-600(// ** BUG IN STL ** BUG IN STL **)]TJ
+T*[(12:)-600(// We should use vector<bool> instead of vector<char>,)]TJ
+T*[(13:)-600(// but vector<bool> has a bug:)]TJ
+T*[(14:)-600(// http://forums.sun.com/thread.jspa?threadID=5277939)]TJ
+T*[(15:)-600(// Static linking works, but doubles the size of the executable)]TJ
+T*[(16:)-600(// image.)]TJ
+T*[(17:)-600(// ** BUG IN STL ** BUG IN STL **)]TJ
+T*[(18:)-600(//)]TJ
+(19:)'
+T*[(20:)-600(typedef vector<char> boolvec;)]TJ
+T*[(21:)-600(boolvec traceflags::flags \(UCHAR_MAX + 1, false\);)]TJ
+T*[(22:)-600(const boolvec trueflags \(UCHAR_MAX + 1, true\);)]TJ
+(23:)'
+T*[(24:)-600(void traceflags::setflags \(const string &optflags\) {)]TJ
+T*[(25:)-600(   string::const_iterator itor = optflags.begin\(\);)]TJ
+T*[(26:)-600(   string::const_iterator end = optflags.end\(\);)]TJ
+T*[(27:)-600(   for \(; itor != end; ++itor\) {)]TJ
+T*[(28:)-600(      if \(*itor == '@'\) {)]TJ
+T*[(29:)-600(         flags = trueflags;)]TJ
+T*[(30:)-600(      }else {)]TJ
+T*[(31:)-600(         flags[*itor] = true;)]TJ
+T*[(32:)-600(      })]TJ
+T*[(33:)-600(   })]TJ
+T*[(34:)-600(   // Note that TRACE can trace setflags.)]TJ
+T*[(35:)-600(   TRACE \('t',  "optflags = " << optflags\);)]TJ
+T*[(36:)-600(})]TJ
+(37:)'
+T*[(38:)-600(//)]TJ
+T*[(39:)-600(// getflag -)]TJ
+T*[(40:)-600(//    Check to see if a certain flag is on.)]TJ
+T*[(41:)-600(//)]TJ
+(42:)'
+T*[(43:)-600(bool traceflags::getflag \(char flag\) {)]TJ
+T*[(44:)-600(   // WARNING: Don't TRACE this function or the stack will blow up.)]TJ
+T*[(45:)-600(   bool result = flags[flag];)]TJ
+T*[(46:)-600(   return result;)]TJ
+T*[(47:)-600(})]TJ
+(48:)'
+ET
+Q
+Q
+endstream
+endobj
+59 0 obj
+2414
+endobj
+62 0 obj
+<</Length 63 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:32)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(1)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 284.804 736.5 Tm
+(util.cpp)Tj
+-118.017 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-98.7875 -35.5 Td
+[(1:)-600(// $Id: util.cpp,v 1.1 2012-04-10 20:43:21-07 - - $)]TJ
+11 TL
+(2:)'
+T*[(3:)-600(#include <cstdlib>)]TJ
+T*[(4:)-600(#include <sstream>)]TJ
+(5:)'
+T*[(6:)-600(using namespace std;)]TJ
+(7:)'
+T*[(8:)-600(#include "util.h")]TJ
+(9:)'
+-6 -11 Td
+[(10:)-600(ydc_exn::ydc_exn \(const string &what\): runtime_error \(what\) {)]TJ
+T*[(11:)-600(})]TJ
+(12:)'
+T*[(13:)-600(const string octal \(int decimal\) {)]TJ
+T*[(14:)-600(   ostringstream ostring;)]TJ
+T*[(15:)-600(   ostring.setf \(ios::oct\);)]TJ
+T*[(16:)-600(   ostring << decimal;)]TJ
+T*[(17:)-600(   return ostring.str \(\);)]TJ
+T*[(18:)-600(})]TJ
+(19:)'
+T*[(20:)-600(int sys_info::exit_status = EXIT_SUCCESS;)]TJ
+T*[(21:)-600(string sys_info::execname; // Must be initialized from main\(\).)]TJ
+(22:)'
+T*[(23:)-600(void sys_info::set_execname \(const string &argv0\) {)]TJ
+T*[(24:)-600(   execname = argv0;)]TJ
+T*[(25:)-600(   cout << boolalpha;)]TJ
+T*[(26:)-600(   cerr << boolalpha;)]TJ
+T*[(27:)-600(   TRACE \('Y', "execname = " << execname\);)]TJ
+T*[(28:)-600(})]TJ
+(29:)'
+T*[(30:)-600(ostream &complain\(\) {)]TJ
+T*[(31:)-600(   sys_info::set_status \(EXIT_FAILURE\);)]TJ
+T*[(32:)-600(   cerr << sys_info::get_execname \(\) << ": ";)]TJ
+T*[(33:)-600(   return cerr;)]TJ
+T*[(34:)-600(})]TJ
+(35:)'
+T*[(36:)-600(template <typename item_t>)]TJ
+T*[(37:)-600(ostream &operator<< \(ostream &out, const vector<item_t> &vec\) {)]TJ
+T*[(38:)-600(   typename vector<item_t>::const_iterator itor = vec.begin\(\);)]TJ
+T*[(39:)-600(   typename vector<item_t>::const_iterator end = vec.end\(\);)]TJ
+(40:)'
+T*[(41:)-600(   // If the vector is empty, do nothing.)]TJ
+T*[(42:)-600(   if \(itor != end\) {)]TJ
+T*[(43:)-600(      // Print out the first element without a space.)]TJ
+T*[(44:)-600(      out << *itor++;)]TJ
+T*[(45:)-600(      // Print out the rest of the elements each preceded by a space.)]TJ
+T*[(46:)-600(      while \(itor != end\) out << " " << *itor++;)]TJ
+T*[(47:)-600(   })]TJ
+T*[(48:)-600(   return out;)]TJ
+T*[(49:)-600(})]TJ
+(50:)'
+ET
+Q
+Q
+endstream
+endobj
+63 0 obj
+2513
+endobj
+66 0 obj
+<</Length 67 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:33)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(1)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 280.143 736.5 Tm
+(main.cpp)Tj
+-113.355 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-98.7875 -35.5 Td
+[(1:)-600(// $Id: main.cpp,v 1.8 2012-04-12 19:31:01-07 - - $)]TJ
+11 TL
+(2:)'
+T*[(3:)-600(#include <deque>)]TJ
+T*[(4:)-600(#include <exception>)]TJ
+T*[(5:)-600(#include <map>)]TJ
+T*[(6:)-600(#include <iostream>)]TJ
+T*[(7:)-600(#include <utility>)]TJ
+(8:)'
+T*[(9:)-600(using namespace std;)]TJ
+-6 -11 Td
+(10:)Tj
+T*[(11:)-600(#include "bigint.h")]TJ
+T*[(12:)-600(#include "iterstack.h")]TJ
+T*[(13:)-600(#include "util.h")]TJ
+T*[(14:)-600(#include "scanner.h")]TJ
+T*[(15:)-600(#include "trace.h")]TJ
+(16:)'
+T*[(17:)-600(typedef iterstack<bigint> bigint_stack;)]TJ
+(18:)'
+T*[(19:)-600(#define DO_BINOP\(FN_NAME,TFLAG,OPER\) \\)]TJ
+T*[(20:)-600(   void FN_NAME \(bigint_stack &stack\) { \\)]TJ
+T*[(21:)-600(      bigint right = stack.top\(\); \\)]TJ
+T*[(22:)-600(      stack.pop\(\); \\)]TJ
+T*[(23:)-600(      TRACE \(TFLAG, "right = " << right\); \\)]TJ
+T*[(24:)-600(      bigint left = stack.top\(\); \\)]TJ
+T*[(25:)-600(      stack.pop\(\); \\)]TJ
+T*[(26:)-600(      TRACE \(TFLAG, "left = " << left\); \\)]TJ
+T*[(27:)-600(      bigint result = left OPER \(right\); \\)]TJ
+T*[(28:)-600(      TRACE \(TFLAG, "result = " << result\); \\)]TJ
+T*[(29:)-600(      stack.push \(result\); \\)]TJ
+T*[(30:)-600(   })]TJ
+T*[(31:)-600(DO_BINOP\(do_add, '+', +   \))]TJ
+T*[(32:)-600(DO_BINOP\(do_sub, '-', -   \))]TJ
+T*[(33:)-600(DO_BINOP\(do_mul, '*', *   \))]TJ
+T*[(34:)-600(DO_BINOP\(do_div, '/', /   \))]TJ
+T*[(35:)-600(DO_BINOP\(do_rem, '%', %   \))]TJ
+T*[(36:)-600(DO_BINOP\(do_pow, '^', .pow\))]TJ
+(37:)'
+T*[(38:)-600(void do_clear \(bigint_stack &stack\) {)]TJ
+T*[(39:)-600(   TRACE \('c', ""\);)]TJ
+T*[(40:)-600(   stack.clear\(\);)]TJ
+T*[(41:)-600(})]TJ
+(42:)'
+T*[(43:)-600(void do_dup \(bigint_stack &stack\) {)]TJ
+T*[(44:)-600(   bigint top = stack.top\(\);)]TJ
+T*[(45:)-600(   TRACE \('d', top\);)]TJ
+T*[(46:)-600(   stack.push \(top\);)]TJ
+T*[(47:)-600(})]TJ
+(48:)'
+T*[(49:)-600(void do_printall \(bigint_stack &stack\) {)]TJ
+T*[(50:)-600(   bigint_stack::const_reverse_iterator itor = stack.rbegin\(\);)]TJ
+T*[(51:)-600(   bigint_stack::const_reverse_iterator end = stack.rend\(\);)]TJ
+T*[(52:)-600(   for \(; itor != end; ++itor\) cout << *itor << endl;)]TJ
+T*[(53:)-600(})]TJ
+(54:)'
+T*[(55:)-600(void do_print \(bigint_stack &stack\) {)]TJ
+T*[(56:)-600(   cout << stack.top\(\) << endl;)]TJ
+T*[(57:)-600(})]TJ
+(58:)'
+T*[(59:)-600(void do_debug \(bigint_stack &stack\) {)]TJ
+T*[(60:)-600(   \(void\) stack; // SUPPRESS: warning: unused parameter 'stack')]TJ
+T*[(61:)-600(   cout << "Y not implemented" << endl;)]TJ
+T*[(62:)-600(})]TJ
+(63:)'
+ET
+Q
+Q
+endstream
+endobj
+67 0 obj
+3059
+endobj
+70 0 obj
+<</Length 71 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:33)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(2)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 280.143 736.5 Tm
+(main.cpp)Tj
+-113.355 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-104.787 -35.5 Td
+(64:)Tj
+11 TL
+T*[(65:)-600(class ydc_quit: public exception {};)]TJ
+T*[(66:)-600(void do_quit \(bigint_stack &stack\) {)]TJ
+T*[(67:)-600(   \(void\) stack; // SUPPRESS: warning: unused parameter 'stack')]TJ
+T*[(68:)-600(   throw ydc_quit \(\);)]TJ
+T*[(69:)-600(})]TJ
+(70:)'
+T*[(71:)-600(typedef void \(*function\) \(bigint_stack&\);)]TJ
+T*[(72:)-600(typedef map <string, function> fnmap;)]TJ
+T*[(73:)-600(fnmap load_fn \(\) {)]TJ
+T*[(74:)-600(   fnmap functions;)]TJ
+T*[(75:)-600(   functions["+"] = do_add;)]TJ
+T*[(76:)-600(   functions["-"] = do_sub;)]TJ
+T*[(77:)-600(   functions["*"] = do_mul;)]TJ
+T*[(78:)-600(   functions["/"] = do_div;)]TJ
+T*[(79:)-600(   functions["%"] = do_rem;)]TJ
+T*[(80:)-600(   functions["^"] = do_pow;)]TJ
+T*[(81:)-600(   functions["Y"] = do_debug;)]TJ
+T*[(82:)-600(   functions["c"] = do_clear;)]TJ
+T*[(83:)-600(   functions["d"] = do_dup;)]TJ
+T*[(84:)-600(   functions["f"] = do_printall;)]TJ
+T*[(85:)-600(   functions["p"] = do_print;)]TJ
+T*[(86:)-600(   functions["q"] = do_quit;;)]TJ
+T*[(87:)-600(   return functions;)]TJ
+T*[(88:)-600(})]TJ
+(89:)'
+T*[(90:)-600(//)]TJ
+T*[(91:)-600(// scan_options)]TJ
+T*[(92:)-600(//    Options analysis:  The only option is -Dflags. )]TJ
+T*[(93:)-600(//)]TJ
+(94:)'
+T*[(95:)-600(void scan_options \(int argc, char **argv\) {)]TJ
+T*[(96:)-600(   opterr = 0;)]TJ
+T*[(97:)-600(   for \(;;\) {)]TJ
+T*[(98:)-600(      int option = getopt \(argc, argv, "@:"\);)]TJ
+T*[(99:)-600(      if \(option == EOF\) break;)]TJ
+-6 -11 Td
+[(100:)-600(      switch \(option\) {)]TJ
+T*[(101:)-600(         case '@':)]TJ
+T*[(102:)-600(            traceflags::setflags \(optarg\);)]TJ
+T*[(103:)-600(            break;)]TJ
+T*[(104:)-600(         default:)]TJ
+T*[(105:)-600(            complain\(\) << "-" << \(char\) optopt << ": invalid option")]TJ
+T*[(106:)-600(                       << endl;)]TJ
+T*[(107:)-600(            break;)]TJ
+T*[(108:)-600(      })]TJ
+T*[(109:)-600(   })]TJ
+T*[(110:)-600(   if \(optind < argc\) {)]TJ
+T*[(111:)-600(      complain\(\) << "operand not permitted" << endl;)]TJ
+T*[(112:)-600(   })]TJ
+T*[(113:)-600(})]TJ
+(114:)'
+ET
+Q
+Q
+endstream
+endobj
+71 0 obj
+2616
+endobj
+74 0 obj
+<</Length 75 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:33)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(3)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 280.143 736.5 Tm
+(main.cpp)Tj
+-113.355 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-110.787 -35.5 Td
+(115:)Tj
+11 TL
+T*[(116:)-600(int main \(int argc, char **argv\) {)]TJ
+T*[(117:)-600(   sys_info::set_execname \(argv[0]\);)]TJ
+T*[(118:)-600(   scan_options \(argc, argv\);)]TJ
+T*[(119:)-600(   fnmap functions = load_fn\(\);)]TJ
+T*[(120:)-600(   bigint_stack operand_stack;)]TJ
+T*[(121:)-600(   scanner input;)]TJ
+T*[(122:)-600(   try {)]TJ
+T*[(123:)-600(      for \(;;\) {)]TJ
+T*[(124:)-600(         try {)]TJ
+T*[(125:)-600(            token_t token = input.scan\(\);)]TJ
+T*[(126:)-600(            if \(token.symbol == SCANEOF\) break;)]TJ
+T*[(127:)-600(            switch \(token.symbol\) {)]TJ
+T*[(128:)-600(               case NUMBER:)]TJ
+T*[(129:)-600(                  operand_stack.push \(token.lexinfo\);)]TJ
+T*[(130:)-600(                  break;)]TJ
+T*[(131:)-600(               case OPERATOR: {)]TJ
+T*[(132:)-600(                  function fn = functions[token.lexinfo];)]TJ
+T*[(133:)-600(                  if \(fn == NULL\) {)]TJ
+T*[(134:)-600(                     throw ydc_exn \(octal \(token.lexinfo[0]\))]TJ
+T*[(135:)-600(                                    + " is unimplemented"\);)]TJ
+T*[(136:)-600(                  })]TJ
+T*[(137:)-600(                  fn \(operand_stack\);)]TJ
+T*[(138:)-600(                  break;)]TJ
+T*[(139:)-600(                  })]TJ
+T*[(140:)-600(               default:)]TJ
+T*[(141:)-600(                  break;)]TJ
+T*[(142:)-600(            })]TJ
+T*[(143:)-600(         }catch \(ydc_exn &exn\) {)]TJ
+T*[(144:)-600(            cout << exn.what\(\) << endl;)]TJ
+T*[(145:)-600(         })]TJ
+T*[(146:)-600(      })]TJ
+T*[(147:)-600(   }catch \(ydc_quit &\) {)]TJ
+T*[(148:)-600(      // Intentionally left empty.)]TJ
+T*[(149:)-600(   })]TJ
+T*[(150:)-600(   return sys_info::get_status \(\);)]TJ
+T*[(151:)-600(})]TJ
+(152:)'
+ET
+Q
+Q
+endstream
+endobj
+75 0 obj
+2286
+endobj
+78 0 obj
+<</Length 79 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:31)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(1)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 280.773 736.5 Tm
+(Makefile)Tj
+-113.985 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-98.7875 -35.5 Td
+[(1:)-600(# $Id: Makefile,v 1.4 2012-04-10 20:43:21-07 - - $)]TJ
+11 TL
+(2:)'
+T*[(3:)-600(MKFILE      = Makefile)]TJ
+T*[(4:)-600(DEPFILE     = ${MKFILE}.dep)]TJ
+T*[(5:)-600(NOINCL      = ci clean spotless)]TJ
+T*[(6:)-600(NEEDINCL    = ${filter ${NOINCL}, ${MAKECMDGOALS}})]TJ
+T*[(7:)-600(GMAKE       = ${MAKE} --no-print-directory)]TJ
+(8:)'
+T*[(9:)-600(COMPILECPP  = g++ -g -O0 -Wall -Wextra -Werror)]TJ
+-6 -11 Td
+[(10:)-600(MAKEDEPCPP  = g++ -MM)]TJ
+(11:)'
+T*[(12:)-600(CPPHEADER   = bigint.h   scanner.h   trace.h   util.h   iterstack.h)]TJ
+T*[(13:)-600(CPPSOURCE   = bigint.cpp scanner.cpp trace.cpp util.cpp main.cpp)]TJ
+T*[(14:)-600(EXECBIN     = ydc)]TJ
+T*[(15:)-600(OBJECTS     = ${CPPSOURCE:.cpp=.o})]TJ
+T*[(16:)-600(OTHERS      = ${MKFILE} README)]TJ
+T*[(17:)-600(ALLSOURCES  = ${CPPHEADER} ${CPPSOURCE} ${OTHERS})]TJ
+T*[(18:)-600(LISTING     = Listing.code.ps)]TJ
+T*[(19:)-600(CLASS       = cmps109-wm.s12)]TJ
+T*[(20:)-600(PROJECT     = asg2)]TJ
+(21:)'
+T*[(22:)-600(all : ${EXECBIN})]TJ
+T*[(23:)-600(        - checksource ${ALLSOURCES})]TJ
+(24:)'
+T*[(25:)-600(${EXECBIN} : ${OBJECTS})]TJ
+T*[(26:)-600(        ${COMPILECPP} -o $@ ${OBJECTS})]TJ
+(27:)'
+T*[(28:)-600(%.o : %.cpp)]TJ
+T*[(29:)-600(        cid + $<)]TJ
+T*[(30:)-600(        ${COMPILECPP} -c $<)]TJ
+(31:)'
+T*[(32:)-600(ci : ${ALLSOURCES})]TJ
+T*[(33:)-600(        - checksource ${ALLSOURCES})]TJ
+T*[(34:)-600(        cid + ${ALLSOURCES})]TJ
+(35:)'
+T*[(36:)-600(lis : ${ALLSOURCES})]TJ
+T*[(37:)-600(        mkpspdf ${LISTING} ${ALLSOURCES} ${DEPFILE})]TJ
+(38:)'
+T*[(39:)-600(clean :)]TJ
+T*[(40:)-600(        - rm ${OBJECTS} ${DEPFILE} core ${EXECBIN}.errs)]TJ
+(41:)'
+T*[(42:)-600(spotless : clean)]TJ
+T*[(43:)-600(        - rm ${EXECBIN} ${LISTING})]TJ
+(44:)'
+T*[(45:)-600(submit : ${ALLSOURCES})]TJ
+T*[(46:)-600(        - checksource ${ALLSOURCES})]TJ
+T*[(47:)-600(        submit ${CLASS} ${PROJECT} ${ALLSOURCES})]TJ
+(48:)'
+T*[(49:)-600(dep : ${CPPSOURCE} ${CPPHEADER})]TJ
+T*[(50:)-600(        @ echo "# ${DEPFILE} created `LC_TIME=C date`" >${DEPFILE})]TJ
+T*[(51:)-600(        ${MAKEDEPCPP} ${CPPSOURCE} >>${DEPFILE})]TJ
+(52:)'
+T*[(53:)-600(${DEPFILE} :)]TJ
+T*[(54:)-600(        @ touch ${DEPFILE})]TJ
+T*[(55:)-600(        ${GMAKE} dep)]TJ
+(56:)'
+T*[(57:)-600(again :)]TJ
+T*[(58:)-600(        ${GMAKE} spotless dep ci all lis)]TJ
+(59:)'
+T*[(60:)-600(ifeq \(${NEEDINCL}, \))]TJ
+T*[(61:)-600(include ${DEPFILE})]TJ
+T*[(62:)-600(endif)]TJ
+(63:)'
+ET
+Q
+Q
+endstream
+endobj
+79 0 obj
+2930
+endobj
+82 0 obj
+<</Length 83 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:31)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(1)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 276.551 736.5 Tm
+(README)Tj
+-109.764 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-98.7875 -35.5 Td
+[(1:)-600($Id: README,v 1.2 2011-01-18 22:18:39-08 - - $)]TJ
+11 TL
+(2:)'
+ET
+Q
+Q
+endstream
+endobj
+83 0 obj
+588
+endobj
+86 0 obj
+<</Length 87 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+0 G
+380 240 5360 7080 re
+S
+0.949219 g
+380 7320 5360 180 re
+f
+0.699219 g
+380 7320 720 360 re
+f
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R9 12 Tf
+1 0 0 1 52.6641 752 Tm
+(04/12/12)Tj
+-0.659766 -12.8004 Td
+(19:35:31)Tj
+ET
+Q
+0.699219 g
+5020 7320 720 360 re
+f
+1 G
+1 g
+q
+10 0 0 10 0 0 cm BT
+/R7 28.8 Tf
+1 0 0 1 529.993 739.2 Tm
+(1)Tj
+ET
+Q
+0 G
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 14 Tf
+1 0 0 1 268.915 736.5 Tm
+(Makefile.dep)Tj
+-102.128 18 Td
+($cmps109-wm/Assignments/asg2-dc-bigint/code/)Tj
+/R10 10 Tf
+-98.7875 -35.5 Td
+[(1:)-600(# Makefile.dep created Thu Apr 12 19:35:31 PDT 2012)]TJ
+11 TL
+T*[(2:)-600(bigint.o: bigint.cpp bigint.h trace.h)]TJ
+T*[(3:)-600(scanner.o: scanner.cpp scanner.h trace.h)]TJ
+T*[(4:)-600(trace.o: trace.cpp trace.h)]TJ
+T*[(5:)-600(util.o: util.cpp util.h trace.h)]TJ
+T*[(6:)-600(main.o: main.cpp bigint.h trace.h iterstack.h util.h scanner.h)]TJ
+ET
+Q
+Q
+endstream
+endobj
+87 0 obj
+874
+endobj
+4 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 12 0 R
+>>
+/Contents 5 0 R
+>>
+endobj
+13 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 16 0 R
+>>
+/Contents 14 0 R
+>>
+endobj
+17 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 20 0 R
+>>
+/Contents 18 0 R
+>>
+endobj
+21 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 24 0 R
+>>
+/Contents 22 0 R
+>>
+endobj
+25 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 28 0 R
+>>
+/Contents 26 0 R
+>>
+endobj
+29 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 32 0 R
+>>
+/Contents 30 0 R
+>>
+endobj
+33 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 36 0 R
+>>
+/Contents 34 0 R
+>>
+endobj
+37 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 40 0 R
+>>
+/Contents 38 0 R
+>>
+endobj
+41 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 44 0 R
+>>
+/Contents 42 0 R
+>>
+endobj
+45 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 48 0 R
+>>
+/Contents 46 0 R
+>>
+endobj
+49 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 52 0 R
+>>
+/Contents 50 0 R
+>>
+endobj
+53 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 56 0 R
+>>
+/Contents 54 0 R
+>>
+endobj
+57 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 60 0 R
+>>
+/Contents 58 0 R
+>>
+endobj
+61 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 64 0 R
+>>
+/Contents 62 0 R
+>>
+endobj
+65 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 68 0 R
+>>
+/Contents 66 0 R
+>>
+endobj
+69 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 72 0 R
+>>
+/Contents 70 0 R
+>>
+endobj
+73 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 76 0 R
+>>
+/Contents 74 0 R
+>>
+endobj
+77 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 80 0 R
+>>
+/Contents 78 0 R
+>>
+endobj
+81 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 84 0 R
+>>
+/Contents 82 0 R
+>>
+endobj
+85 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 88 0 R
+>>
+/Contents 86 0 R
+>>
+endobj
+3 0 obj
+<< /Type /Pages /Kids [
+4 0 R
+13 0 R
+17 0 R
+21 0 R
+25 0 R
+29 0 R
+33 0 R
+37 0 R
+41 0 R
+45 0 R
+49 0 R
+53 0 R
+57 0 R
+61 0 R
+65 0 R
+69 0 R
+73 0 R
+77 0 R
+81 0 R
+85 0 R
+] /Count 20
+>>
+endobj
+1 0 obj
+<</Type /Catalog /Pages 3 0 R
+>>
+endobj
+12 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R/R11
+11 0 R>>
+endobj
+16 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+20 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+24 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+28 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+32 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+36 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+40 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+44 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+48 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+52 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+56 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+60 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+64 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+68 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+72 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+76 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+80 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+84 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+88 0 obj
+<</R8
+8 0 R/R10
+10 0 R/R7
+7 0 R/R9
+9 0 R>>
+endobj
+8 0 obj
+<</BaseFont/Times-Roman/Type/Font
+/Subtype/Type1>>
+endobj
+10 0 obj
+<</BaseFont/Courier/Type/Font
+/Encoding 89 0 R/Subtype/Type1>>
+endobj
+89 0 obj
+<</Type/Encoding/Differences[
+126/tilde]>>
+endobj
+7 0 obj
+<</BaseFont/Helvetica-Bold/Type/Font
+/Subtype/Type1>>
+endobj
+9 0 obj
+<</BaseFont/Times-Bold/Type/Font
+/Subtype/Type1>>
+endobj
+11 0 obj
+<</BaseFont/Courier-Bold/Type/Font
+/Subtype/Type1>>
+endobj
+2 0 obj
+<</Producer(ESP Ghostscript 815.02)
+/CreationDate(D:20120412193533)
+/ModDate(D:20120412193533)>>endobj
+xref
+0 90
+0000000000 65535 f 
+0000049838 00000 n 
+0000051483 00000 n 
+0000049645 00000 n 
+0000046947 00000 n 
+0000000009 00000 n 
+0000001886 00000 n 
+0000051281 00000 n 
+0000051077 00000 n 
+0000051350 00000 n 
+0000051143 00000 n 
+0000051415 00000 n 
+0000049886 00000 n 
+0000047080 00000 n 
+0000001906 00000 n 
+0000004846 00000 n 
+0000049956 00000 n 
+0000047215 00000 n 
+0000004867 00000 n 
+0000006478 00000 n 
+0000050015 00000 n 
+0000047350 00000 n 
+0000006499 00000 n 
+0000009241 00000 n 
+0000050074 00000 n 
+0000047485 00000 n 
+0000009262 00000 n 
+0000011049 00000 n 
+0000050133 00000 n 
+0000047620 00000 n 
+0000011070 00000 n 
+0000013497 00000 n 
+0000050192 00000 n 
+0000047755 00000 n 
+0000013518 00000 n 
+0000016228 00000 n 
+0000050251 00000 n 
+0000047890 00000 n 
+0000016249 00000 n 
+0000018624 00000 n 
+0000050310 00000 n 
+0000048025 00000 n 
+0000018645 00000 n 
+0000020870 00000 n 
+0000050369 00000 n 
+0000048160 00000 n 
+0000020891 00000 n 
+0000023267 00000 n 
+0000050428 00000 n 
+0000048295 00000 n 
+0000023288 00000 n 
+0000026341 00000 n 
+0000050487 00000 n 
+0000048430 00000 n 
+0000026362 00000 n 
+0000029064 00000 n 
+0000050546 00000 n 
+0000048565 00000 n 
+0000029085 00000 n 
+0000031551 00000 n 
+0000050605 00000 n 
+0000048700 00000 n 
+0000031572 00000 n 
+0000034137 00000 n 
+0000050664 00000 n 
+0000048835 00000 n 
+0000034158 00000 n 
+0000037269 00000 n 
+0000050723 00000 n 
+0000048970 00000 n 
+0000037290 00000 n 
+0000039958 00000 n 
+0000050782 00000 n 
+0000049105 00000 n 
+0000039979 00000 n 
+0000042317 00000 n 
+0000050841 00000 n 
+0000049240 00000 n 
+0000042338 00000 n 
+0000045320 00000 n 
+0000050900 00000 n 
+0000049375 00000 n 
+0000045341 00000 n 
+0000045981 00000 n 
+0000050959 00000 n 
+0000049510 00000 n 
+0000046001 00000 n 
+0000046927 00000 n 
+0000051018 00000 n 
+0000051222 00000 n 
+trailer
+<< /Size 90 /Root 1 0 R /Info 2 0 R
+/ID [<153E8195F3ECEC9CC2213A07856E9B8A><153E8195F3ECEC9CC2213A07856E9B8A>]
+>>
+startxref
+51594
+%%EOF
